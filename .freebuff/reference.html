@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- viewport-fit=cover: without it every env(safe-area-inset-*) the phone
+         shell pads with is 0. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Primary SEO -->
+    <title>Kenneth Villar - GoHighLevel Automation, Vibe Coding &amp; AI Workflows | BrewedOps</title>
+    <meta
+      name="description"
+      content="Kenneth Villar - Aspiring AI Engineer and AI Native Builder. 11 years in customer support. I build GHL automations, funnels, CRM systems, and AI workflows with Claude Code."
+    />
+    <meta name="author" content="Kenneth Villar" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- The browser bar takes the page colour (--cream per theme); the inline
+         theme script below and lib/theme.ts keep it in step with the toggle.
+         Literal hex here only because this runs before any stylesheet loads. -->
+    <meta name="theme-color" content="#F4F4ED" />
+    <link rel="canonical" href="https://portfolio.brewedops.cloud/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Security (browser-honored meta; the strong headers are set by Nginx in production) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Preload critical above-the-fold image so LCP candidate downloads with the HTML.
+         kenneth-portrait is the rail headshot, above the fold on every desktop route. -->
+    <link rel="preload" as="image" href="/home/rail-avatar.webp" fetchpriority="high" media="(min-width: 1100px)" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BrewedOps - Kenneth Villar" />
+    <meta property="og:url" content="https://portfolio.brewedops.cloud/" />
+    <meta
+      property="og:title"
+      content="Kenneth Villar - GoHighLevel Automation, Vibe Coding &amp; AI Workflows | BrewedOps"
+    />
+    <meta
+      property="og:description"
+      content="Kenneth Villar - Aspiring AI Engineer and AI Native Builder. 11 years in customer support. I build GHL automations, funnels, CRM systems, and AI workflows with Claude Code."
+    />
+    <meta property="og:image" content="https://portfolio.brewedops.cloud/me.png" />
+    <meta property="og:image:alt" content="Portrait of Kenneth Villar - Aspiring AI Engineer and AI Native Builder" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Kenneth Villar - GoHighLevel Automation, Vibe Coding &amp; AI Workflows | BrewedOps"
+    />
+    <meta
+      name="twitter:description"
+      content="Kenneth Villar - Aspiring AI Engineer and AI Native Builder. 11 years in customer support. I build GHL automations, funnels, CRM systems, and AI workflows with Claude Code."
+    />
+    <meta name="twitter:image" content="https://portfolio.brewedops.cloud/me.png" />
+    <meta name="twitter:image:alt" content="Portrait of Kenneth Villar" />
+
+    <!-- Structured data: Person + ProfessionalService -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://portfolio.brewedops.cloud/#kenneth",
+          "name": "Kenneth Villar",
+          "url": "https://portfolio.brewedops.cloud/",
+          "image": "https://portfolio.brewedops.cloud/me.png",
+          "jobTitle": "Aspiring AI Engineer and AI Native Builder",
+          "description": "Aspiring AI Engineer and AI Native Builder with 11 years of customer support experience. Builds GHL automations, funnels, CRM systems, and AI workflows with Claude Code.",
+          "email": "mailto:kvillarmain@gmail.com",
+          "knowsAbout": [
+            "GoHighLevel",
+            "Marketing Automation",
+            "CRM Systems",
+            "Sales Funnels",
+            "AI Workflows",
+            "Claude Code",
+            "Customer Support",
+            "Vibe Coding",
+            "Python",
+            "AI Agents",
+            "RAG Chatbots"
+          ],
+          "sameAs": [
+            "https://www.facebook.com/BrewedOpsHL",
+            "https://www.linkedin.com/in/kenneth-villar-10a05734a/",
+            "https://discord.com/users/kapedlvnglgnd"
+          ],
+          "worksFor": { "@id": "https://portfolio.brewedops.cloud/#brewedops" }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://portfolio.brewedops.cloud/#brewedops",
+          "name": "BrewedOps",
+          "url": "https://brewedops.com",
+          "logo": "https://portfolio.brewedops.cloud/logo.png",
+          "image": "https://portfolio.brewedops.cloud/logo.png",
+          "description": "GoHighLevel automation, funnel builds, CRM systems, virtual assistance, and AI-assisted web development for coaches and agencies.",
+          "founder": { "@id": "https://portfolio.brewedops.cloud/#kenneth" },
+          "areaServed": "Worldwide",
+          "serviceType": [
+            "GoHighLevel Automation",
+            "Funnel Design",
+            "CRM Setup",
+            "Virtual Assistance",
+            "Web Development",
+            "AI Workflow Engineering"
+          ],
+          "sameAs": [
+            "https://www.facebook.com/BrewedOpsHL",
+            "https://www.linkedin.com/in/kenneth-villar-10a05734a/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://portfolio.brewedops.cloud/#website",
+          "url": "https://portfolio.brewedops.cloud/",
+          "name": "Kenneth Villar - BrewedOps Portfolio",
+          "publisher": { "@id": "https://portfolio.brewedops.cloud/#kenneth" },
+          "inLanguage": "en-US"
+        }
+      ]
+    }
+    </script>
+    <!-- The static copy in #root is for crawlers without JS. React clears it on boot. -->
+    <style>html.js .prerender { display: none; }</style>
+    <script>document.documentElement.classList.add('js');</script>
+    <!-- Theme before first paint: no flash of the wrong palette. A saved choice
+         wins; with none, phones (below the 1100px shell) open dark and the
+         desktop opens light. -->
+    <script>
+      (function () {
+        var phone = window.matchMedia('(max-width: 1099px)').matches;
+        var saved = null;
+        try { saved = localStorage.getItem('kv-theme'); } catch (e) {}
+        document.documentElement.dataset.theme =
+          saved === 'dark' || saved === 'light' ? saved : phone ? 'dark' : 'light';
+        if (document.documentElement.dataset.theme === 'dark') {
+          var bar = document.querySelector('meta[name="theme-color"]');
+          if (bar) bar.setAttribute('content', '#070B14');
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BnLhoZJC.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Yt8PX1di.css">
+  </head>
+  <body>
+    <div id="root"><div class="prerender"><header><p><a href="/">Kenneth Villar</a></p><nav aria-label="Pages"><ul><li><a href="/">Home</a></li><li><a href="/projects">Projects</a></li><li><a href="/services">Services</a></li><li><a href="/kape-tools">Kape Tools</a></li><li><a href="/testimonials">Testimonials</a></li><li><a href="/about">About</a></li><li><a href="/contact">FAQs / Contact</a></li></ul></nav></header>
+<main>
+<h1>Build it once. Run it forever.</h1>
+<p>Free resources</p>
+<p>I help coaches and agencies turn every lead into a booked call, on autopilot.</p>
+<p>Daily drivers</p>
+<h2>Tools I work with</h2>
+<ul>
+<li>Claude Code</li>
+<li>Codex</li>
+<li>Cursor</li>
+<li>Hermes AI</li>
+<li>VS Code</li>
+<li>GoHighLevel</li>
+<li>Lightspeed X-Series</li>
+<li>Google Workspace</li>
+<li>Zendesk</li>
+<li>Intercom</li>
+<li>Slack</li>
+</ul>
+<p><a href="/projects">Projects Funnels, workflows and apps built to solve real problems.</a></p>
+<p><a href="/projects">AI Builds Agents, RAG chatbots and the tools I run on them.</a></p>
+<p><a href="/about">Focus Aspiring AI Engineer. AI Native Builder. Built with Claude Code, Hermes, Codex, Python, Kimi, Cursor, GLM, Qwen.</a></p>
+<p><a href="/services">Services What I build for coaches and agencies. Coded Funnels GHL Automation CRM Setup Website Apps</a></p>
+<p><a href="/testimonials">Testimonials What the people I build for say about the work.</a></p>
+</main></div></div>
+  </body>
+</html>
