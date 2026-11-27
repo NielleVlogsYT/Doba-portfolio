@@ -112,22 +112,110 @@ img {
     height: calc(100vh - 28px);
     max-height: calc(100vh - 28px);
     margin: 14px 0 14px 8px;
-    padding: 20px 16px 16px;
+    padding: 12px 16px 16px;
     overflow: hidden;
     background-color: #131416;
     border: 1px solid var(--rule);
     border-radius: 22px;
     text-align: center;
+    align-items: center; /* Prevent horizontal stretching */
+}
+
+/* ---------- animated portrait (rail sidebar) ---------- */
+.portrait-wrap {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    align-self: center; /* Prevent any flex stretching */
+}
+
+.portrait-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .portrait {
-    width: 88px;
-    height: 88px;
-    margin: 0 auto;
-    border: 1px solid var(--rule);
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    background-color: var(--cobalt-tint);
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    will-change: opacity;
+}
+
+.portrait--base {
+    opacity: 1;
+    z-index: 1;
+}
+
+.portrait--emotion {
+    z-index: 2;
+}
+
+.portrait-wrap:hover .portrait--base {
+    opacity: 0;
+}
+
+/* Active emotion shown (controlled by JS) */
+.portrait--emotion.is-active {
+    opacity: 1;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .portrait {
+        transition: none;
+    }
+    /* Let is-active control visibility; only remove the cross-fade animation */
+}
+
+/* ---------- hero avatar emotion overlay ---------- */
+.intro__avatar {
+    position: relative;
+    overflow: hidden;
+}
+
+.intro__avatar-emotion {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.intro__avatar-emotion .emotion-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    will-change: opacity;
+}
+
+/* Semi-transparent so cursor-tracking sprite remains visible */
+.intro__avatar-emotion .emotion-frame.is-active {
+    opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro__avatar-emotion .emotion-frame {
+        transition: none;
+        opacity: 0 !important;
+    }
 }
 
 .rail__name {
@@ -198,6 +286,16 @@ img {
     position: relative;
     width: 100%;
     margin-top: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.rail__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
 }
 
 .rail__menu summary {
@@ -1763,10 +1861,15 @@ img {
         display: none;
     }
 
-    .portrait {
-        width: 36px;
-        height: 36px;
-        margin: 0;
+    .portrait-wrap {
+        width: 48px;
+        height: 48px;
+        margin: 0 4px 0 0;
+    }
+
+    .portrait-wrap .portrait {
+        width: 100%;
+        height: 100%;
     }
 
     .rail__name {

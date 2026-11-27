@@ -10,6 +10,83 @@
     'use strict';
 
     /* ---------------------------------------------------------------
+       Emotion cycling for portraits (sidebar + hero overlay)
+       Auto-cycles through thinking/surprised/winking with cross-fade.
+       Pauses on hover, respects prefers-reduced-motion.
+       --------------------------------------------------------------- */
+    function initEmotionCycling() {
+        // Sidebar portrait
+        var railWrap = document.querySelector('.portrait-wrap');
+        var railEmotions = railWrap ? Array.prototype.slice.call(railWrap.querySelectorAll('.portrait--emotion')) : [];
+
+        // Hero avatar emotion overlay
+        var heroAvatar = document.getElementById('portfolio-avatar');
+        var heroEmotionWrap = heroAvatar ? heroAvatar.querySelector('.intro__avatar-emotion') : null;
+        var heroEmotions = heroEmotionWrap ? Array.prototype.slice.call(heroEmotionWrap.querySelectorAll('.emotion-frame')) : [];
+
+        if (!railEmotions.length && !heroEmotions.length) return;
+
+        var currentIndex = 0;
+        var cycleInterval = null;
+        var CYCLE_DELAY = 4000; // ms between emotion changes
+        var isPaused = false;
+
+        function showEmotion(index) {
+            // Sidebar
+            railEmotions.forEach(function (img, i) {
+                img.classList.toggle('is-active', i === index);
+            });
+            // Hero
+            heroEmotions.forEach(function (img, i) {
+                img.classList.toggle('is-active', i === index);
+            });
+        }
+
+        function nextEmotion() {
+            if (isPaused) return;
+            currentIndex = (currentIndex + 1) % Math.max(railEmotions.length, heroEmotions.length);
+            showEmotion(currentIndex);
+        }
+
+        function startCycle() {
+            stopCycle();
+            cycleInterval = setInterval(nextEmotion, CYCLE_DELAY);
+        }
+
+        function stopCycle() {
+            if (cycleInterval) {
+                clearInterval(cycleInterval);
+                cycleInterval = null;
+            }
+        }
+
+        // Pause on hover for both elements
+        var pauseTargets = [];
+        if (railWrap) pauseTargets.push(railWrap);
+        if (heroAvatar) pauseTargets.push(heroAvatar);
+
+        pauseTargets.forEach(function (el) {
+            el.addEventListener('mouseenter', function () { isPaused = true; });
+            el.addEventListener('mouseleave', function () { isPaused = false; });
+        });
+
+        // Respect prefers-reduced-motion (remove cross-fade animation, but keep cycling)
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        function handleReducedMotion(e) {
+            // Keep cycling running; CSS handles removing the cross-fade animation
+            // when reduced motion is on via transition: none.
+            if (e.matches) {
+                // Instantly set first emotion if we were mid-transition
+                showEmotion(currentIndex);
+            }
+        }
+        reducedMotion.addEventListener('change', handleReducedMotion);
+
+        // Always start cycling — reduced motion only removes animation, not content changes
+        startCycle();
+    }
+
+    /* ---------------------------------------------------------------
        Avatar cursor tracking (hero section)
        Snaps cursor direction to a 5x5 pose sheet and eases the avatar's
        physical drift for a "living character" feel.
@@ -235,4 +312,5 @@
 
     // Auto-init on load
     initProjectFilters();
+    initEmotionCycling();
 })();

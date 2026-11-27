@@ -1,0 +1,24 @@
+{
+  "name": "doba-portfolio",
+  "version": "1.0.0",
+  "description": "A static portfolio site with a Git-backed admin panel. Built with vanilla HTML/CSS/JS, deployed on Vercel.",
+  "main": "admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NielleVlogsYT/Doba-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NielleVlogsYT/Doba-portfolio/issues"
+  },
+  "homepage": "https://github.com/NielleVlogsYT/Doba-portfolio#readme",
+  "dependencies": {
+    "playwright": "^1.65.1"
+  }
+}
