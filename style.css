@@ -338,6 +338,72 @@ img {
     text-align: center;
 }
 
+.intro__avatar-wrap {
+    width: 280px;
+    height: 280px;
+    flex-shrink: 0;
+    animation: avatar-float 6s ease-in-out infinite;
+}
+
+.intro__avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: 500% 500%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    will-change: background-position, transform, box-shadow;
+    box-shadow:
+        0 0 0 1px rgba(85, 166, 255, 0.12),
+        0 4px 24px rgba(0, 0, 0, 0.35),
+        0 16px 48px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+@keyframes avatar-float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-6px) scale(1.005);
+    }
+}
+
+.intro__avatar-wrap:hover .intro__avatar {
+    box-shadow:
+        0 0 0 1px rgba(85, 166, 255, 0.24),
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 24px 64px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.intro__avatar-wrap:hover {
+    animation-play-state: paused;
+}
+
+@media (max-width: 940px) {
+    .intro__avatar-wrap {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (max-width: 600px) {
+    .intro__avatar-wrap {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro__avatar-wrap {
+        animation: none;
+    }
+    .intro__avatar {
+        transition: none;
+    }
+}
+
 .intro__text {
     width: 100%;
 }
