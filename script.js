@@ -177,44 +177,62 @@
         updateCurrentSection();
     }
 
-    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-filter]'));
-    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-tags]'));
-    var status = document.querySelector('.filter-status');
+    // ============================================================
+    // Project Filters (exposed for dynamic content)
+    // ============================================================
+    function initProjectFilters() {
+        var chips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-filter]'));
+        var cards = Array.prototype.slice.call(document.querySelectorAll('[data-tags]'));
+        var status = document.querySelector('.filter-status');
 
-    if (!chips.length || !cards.length) {
-        return;
-    }
+        if (!chips.length || !cards.length) {
+            return;
+        }
 
-    function apply(filter) {
-        var shown = 0;
+        function apply(filter) {
+            var shown = 0;
+
+            chips.forEach(function (chip) {
+                chip.setAttribute(
+                    'aria-pressed',
+                    String(chip.getAttribute('data-filter') === filter)
+                );
+            });
+
+            cards.forEach(function (card) {
+                var tags = (card.getAttribute('data-tags') || '').split(' ');
+                var match = filter === 'all' || tags.indexOf(filter) !== -1;
+                card.hidden = !match;
+                if (match) {
+                    shown++;
+                }
+            });
+
+            if (status) {
+                status.textContent =
+                    shown === 1 ? 'Showing 1 project.' : 'Showing ' + shown + ' projects.';
+            }
+        }
 
         chips.forEach(function (chip) {
-            chip.setAttribute(
-                'aria-pressed',
-                String(chip.getAttribute('data-filter') === filter)
-            );
+            // Remove existing listeners to avoid duplicates
+            chip.replaceWith(chip.cloneNode(true));
         });
 
-        cards.forEach(function (card) {
-            var tags = (card.getAttribute('data-tags') || '').split(' ');
-            var match = filter === 'all' || tags.indexOf(filter) !== -1;
-            card.hidden = !match;
-            if (match) {
-                shown++;
-            }
+        // Re-select after clone
+        var newChips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-filter]'));
+        newChips.forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                apply(chip.getAttribute('data-filter'));
+            });
         });
 
-        if (status) {
-            status.textContent =
-                shown === 1 ? 'Showing 1 project.' : 'Showing ' + shown + ' projects.';
-        }
+        apply('all');
     }
 
-    chips.forEach(function (chip) {
-        chip.addEventListener('click', function () {
-            apply(chip.getAttribute('data-filter'));
-        });
-    });
+    // Expose for content-loader
+    window.initProjectFilters = initProjectFilters;
 
-    apply('all');
+    // Auto-init on load
+    initProjectFilters();
 })();

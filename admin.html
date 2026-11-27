@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Jhon Denielle Icawalo</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=switzer@400,500,600&display=swap">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="admin.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="admin-page">
+        <header class="admin-header">
+            <div class="admin-header__left">
+                <a href="index.html" class="admin-home-link" aria-label="View site">
+                    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    View Site
+                </a>
+                <span class="admin-divider" aria-hidden="true"></span>
+                <h1>Admin Panel</h1>
+            </div>
+            <div class="admin-header__right">
+                <span class="admin-status" id="admin-status">Ready</span>
+                <button class="button button--primary" id="save-btn" disabled>
+                    <span class="btn-text">Save Changes</span>
+                    <span class="btn-loading" aria-hidden="true">Saving…</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="admin-main" id="main">
+            <div class="admin-sidebar" aria-label="Content sections">
+                <nav class="admin-nav">
+                    <button class="admin-nav__item active" data-section="site" aria-controls="panel-site">Site Settings</button>
+                    <button class="admin-nav__item" data-section="projects" aria-controls="panel-projects">Projects</button>
+                    <button class="admin-nav__item" data-section="services" aria-controls="panel-services">Services</button>
+                    <button class="admin-nav__item" data-section="about" aria-controls="panel-about">About</button>
+                    <button class="admin-nav__item" data-section="contact" aria-controls="panel-contact">Contact</button>
+                </nav>
+            </div>
+
+            <div class="admin-content">
+                <!-- SITE SETTINGS -->
+                <section class="admin-panel active" id="panel-site" role="tabpanel" aria-labelledby="site-label">
+                    <h2 id="site-label">Site Settings</h2>
+
+                    <div class="admin-fieldset">
+                        <h3>Identity</h3>
+                        <div class="field-row">
+                            <label for="site-name">Name</label>
+                            <input type="text" id="site-name" name="site.name" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="site-role">Role / Title</label>
+                            <input type="text" id="site-role" name="site.role" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="site-handle">Handle</label>
+                            <input type="text" id="site-handle" name="site.handle" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="site-email">Email</label>
+                            <input type="email" id="site-email" name="site.email" value="">
+                        </div>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Social Links</h3>
+                        <div class="field-row">
+                            <label for="social-github">GitHub</label>
+                            <input type="url" id="social-github" name="site.social.github" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="social-linkedin">LinkedIn</label>
+                            <input type="url" id="social-linkedin" name="site.social.linkedin" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="social-facebook">Facebook</label>
+                            <input type="url" id="social-facebook" name="site.social.facebook" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="social-twitter">X (Twitter)</label>
+                            <input type="url" id="social-twitter" name="site.social.twitter" value="">
+                        </div>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Hero Section</h3>
+                        <div class="field-row">
+                            <label for="hero-status">Status Badge</label>
+                            <input type="text" id="hero-status" name="site.hero.status" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="hero-headline-light">Headline (Light)</label>
+                            <input type="text" id="hero-headline-light" name="site.hero.headlineLight" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="hero-headline-heavy">Headline (Heavy)</label>
+                            <input type="text" id="hero-headline-heavy" name="site.hero.headlineHeavy" value="">
+                        </div>
+                        <div class="field-row field-row--textarea">
+                            <label for="hero-lede">Lead Paragraph</label>
+                            <textarea id="hero-lede" name="site.hero.lede" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Tools Marquee</h3>
+                        <div id="tools-list" class="sortable-list"></div>
+                        <button type="button" class="button button--outline button--sm" id="add-tool">+ Add Tool</button>
+                    </div>
+                </section>
+
+                <!-- PROJECTS -->
+                <section class="admin-panel" id="panel-projects" role="tabpanel" aria-labelledby="projects-label">
+                    <div class="panel-header">
+                        <h2 id="projects-label">Projects</h2>
+                        <button type="button" class="button button--outline button--sm" id="add-project">+ Add Project</button>
+                    </div>
+                    <div id="projects-list" class="sortable-list"></div>
+                </section>
+
+                <!-- SERVICES -->
+                <section class="admin-panel" id="panel-services" role="tabpanel" aria-labelledby="services-label">
+                    <div class="panel-header">
+                        <h2 id="services-label">Services</h2>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Process Steps</h3>
+                        <div id="process-list" class="sortable-list"></div>
+                        <button type="button" class="button button--outline button--sm" id="add-process">+ Add Step</button>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Service Cards</h3>
+                        <div id="service-cards-list" class="sortable-list"></div>
+                        <button type="button" class="button button--outline button--sm" id="add-service-card">+ Add Service Card</button>
+                    </div>
+                </section>
+
+                <!-- ABOUT -->
+                <section class="admin-panel" id="panel-about" role="tabpanel" aria-labelledby="about-label">
+                    <h2 id="about-label">About</h2>
+
+                    <div class="admin-fieldset">
+                        <h3>Story</h3>
+                        <div class="field-row field-row--textarea">
+                            <label for="story-lead">Lead Paragraph</label>
+                            <textarea id="story-lead" name="about.story.lead" rows="3"></textarea>
+                        </div>
+                        <div id="story-paragraphs" class="sortable-list"></div>
+                        <button type="button" class="button button--outline button--sm" id="add-story-paragraph">+ Add Paragraph</button>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Skills Stack (3 Plates)</h3>
+                        <div id="skills-plates" class="sortable-list"></div>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Facts</h3>
+                        <div id="facts-list" class="sortable-list"></div>
+                        <button type="button" class="button button--outline button--sm" id="add-fact">+ Add Fact</button>
+                    </div>
+                </section>
+
+                <!-- CONTACT -->
+                <section class="admin-panel" id="panel-contact" role="tabpanel" aria-labelledby="contact-label">
+                    <h2 id="contact-label">Contact</h2>
+
+                    <div class="admin-fieldset">
+                        <h3>Header</h3>
+                        <div class="field-row">
+                            <label for="contact-headline">Headline</label>
+                            <input type="text" id="contact-headline" name="contact.headline" value="">
+                        </div>
+                        <div class="field-row field-row--textarea">
+                            <label for="contact-lede">Lead Paragraph</label>
+                            <textarea id="contact-lede" name="contact.lede" rows="3"></textarea>
+                        </div>
+                        <div class="field-row">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="contact.email" value="">
+                        </div>
+                        <div class="field-row">
+                            <label for="contact-resume">Résumé URL</label>
+                            <input type="url" id="contact-resume" name="contact.resumeUrl" value="">
+                        </div>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>Availability Note</h3>
+                        <div class="field-row field-row--textarea">
+                            <label for="contact-availability">Availability Text</label>
+                            <textarea id="contact-availability" name="contact.availability" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="admin-fieldset">
+                        <h3>FAQs</h3>
+                        <div id="faqs-list" class="sortable-list"></div>
+                        <button type="button" class="button button--outline button--sm" id="add-faq">+ Add FAQ</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="admin-footer">
+            <p>Changes are saved to GitHub and trigger a Vercel redeploy.</p>
+        </footer>
+    </div>
+
+    <!-- TEMPLATES FOR DYNAMIC ITEMS -->
+    <template id="tpl-tool">
+        <div class="list-item" draggable="true">
+            <input type="text" name="tool" placeholder="Tool name" class="list-item__input">
+            <button type="button" class="list-item__drag" aria-label="Drag to reorder">⋮⋮</button>
+            <button type="button" class="list-item__delete" aria-label="Delete">×</button>
+        </div>
+    </template>
+
+    <template id="tpl-project">
+        <details class="list-item list-item--project" open>
+            <summary class="list-item__summary">
+                <span class="list-item__title">New Project</span>
+                <div class="list-item__actions">
+                    <button type="button" class="list-item__drag" aria-label="Drag to reorder">⋮⋮</button>
+                    <button type="button" class="list-item__delete" aria-label="Delete project">×</button>
+                </div>
+            </summary>
+            <div class="list-item__body">
+                <div class="field-grid">
+                    <div class="field-row">
+                        <label>ID (slug)</label>
+                        <input type="text" name="id" placeholder="my-project" required>
+                    </div>
+                    <div class="field-row">
+                        <label>Number</label>
+                        <input type="text" name="number" placeholder="01" maxlength="2">
+                    </div>
+                    <div class="field-row">
+                        <label>Type</label>
+                        <input type="text" name="type" placeholder="WEB APP">
+                    </div>
+                    <div class="field-row">
+                        <label>Year</label>
+                        <input type="text" name="year" placeholder="2025" maxlength="4">
+                    </div>
+                    <div class="field-row field-row--full">
+                        <label>Title</label>
+                        <input type="text" name="title" placeholder="Project title">
+                    </div>
+                    <div class="field-row field-row--full field-row--textarea">
+                        <label>Description</label>
+                        <textarea name="description" rows="2" placeholder="One-sentence description"></textarea>
+                    </div>
+                    <div class="field-row field-row--full">
+                        <label>Tags (space-separated: web dashboard api)</label>
+                        <input type="text" name="tags" placeholder="web dashboard api">
+                    </div>
+                    <div class="field-row field-row--full">
+                        <label>Stack (comma-separated)</label>
+                        <input type="text" name="stack" placeholder="Next.js, TypeScript, PostgreSQL, Prisma">
+                    </div>
+                    <div class="field-row field-row--full">
+                        <label>GitHub URL</label>
+                        <input type="url" name="githubUrl" placeholder="https://github.com/...">                    </div>
+                </div>
+                <hr class="list-item__divider">
+                <h4>Visual Config</h4>
+                <div class="field-grid" id="visual-fields">
+                    <div class="field-row">
+                        <label>Visual Type</label>
+                        <select name="visual.type">
+                            <option value="catalog">Catalog (Course Enrollment)</option>
+                            <option value="inventory">Inventory (Dashboard)</option>
+                            <option value="api">API Console</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </template>
+
+    <template id="tpl-process">
+        <div class="list-item" draggable="true">
+            <div class="field-grid">
+                <div class="field-row">
+                    <label>Step Label</label>
+                    <input type="text" name="step" placeholder="Step 1" class="field-sm">
+                </div>
+                <div class="field-row field-row--grow">
+                    <label>Title</label>
+                    <input type="text" name="title" placeholder="Scope">
+                </div>
+            </div>
+            <div class="field-row field-row--textarea">
+                <label>Description</label>
+                <textarea name="description" rows="2" placeholder="Description..."></textarea>
+            </div>
+            <button type="button" class="list-item__delete" aria-label="Delete step">×</button>
+        </div>
+    </template>
+
+    <template id="tpl-service-card">
+        <div class="list-item" draggable="true">
+            <div class="field-row field-row--full">
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Web applications">
+            </div>
+            <div class="field-row field-row--full field-row--textarea">
+                <label>Description</label>
+                <textarea name="description" rows="2" placeholder="Description..."></textarea>
+            </div>
+            <div class="field-row field-row--full">
+                <label>Items (one per line)</label>
+                <textarea name="items" rows="3" placeholder="React or Next.js front end&#10;Sign-in, roles and permissions&#10;Forms that validate properly"></textarea>
+            </div>
+            <button type="button" class="list-item__delete" aria-label="Delete card">×</button>
+        </div>
+    </template>
+
+    <template id="tpl-story-paragraph">
+        <div class="list-item" draggable="true">
+            <div class="field-row field-row--textarea">
+                <label>Paragraph</label>
+                <textarea name="paragraph" rows="2" placeholder="Paragraph text..."></textarea>
+            </div>
+            <button type="button" class="list-item__delete" aria-label="Delete paragraph">×</button>
+        </div>
+    </template>
+
+    <template id="tpl-skills-plate">
+        <div class="list-item" draggable="true">
+            <div class="field-grid">
+                <div class="field-row">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Data">
+                </div>
+                <div class="field-row field-row--grow">
+                    <label>Detail</label>
+                    <input type="text" name="detail" placeholder="Postgres, MySQL, Prisma">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="tpl-fact">
+        <div class="list-item" draggable="true">
+            <div class="field-grid">
+                <div class="field-row">
+                    <label>Label</label>
+                    <input type="text" name="label" placeholder="Focus">
+                </div>
+                <div class="field-row field-row--grow">
+                    <label>Value</label>
+                    <input type="text" name="value" placeholder="Full stack web development...">
+                </div>
+            </div>
+            <button type="button" class="list-item__delete" aria-label="Delete fact">×</button>
+        </div>
+    </template>
+
+    <template id="tpl-faq">
+        <details class="list-item" open>
+            <summary class="list-item__summary">
+                <span class="list-item__title">New FAQ</span>
+                <button type="button" class="list-item__delete" aria-label="Delete FAQ">×</button>
+            </summary>
+            <div class="list-item__body">
+                <div class="field-grid">
+                    <div class="field-row field-row--full field-row--textarea">
+                        <label>Question</label>
+                        <textarea name="question" rows="2" placeholder="What do you actually build?"></textarea>
+                    </div>
+                    <div class="field-row field-row--full field-row--textarea">
+                        <label>Answer</label>
+                        <textarea name="answer" rows="3" placeholder="Web applications end to end..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </template>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

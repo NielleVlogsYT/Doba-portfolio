@@ -110,9 +110,10 @@ img {
     display: flex;
     flex-direction: column;
     height: calc(100vh - 28px);
+    max-height: calc(100vh - 28px);
     margin: 14px 0 14px 8px;
-    padding: 28px 20px 20px;
-    overflow-y: auto;
+    padding: 20px 16px 16px;
+    overflow: hidden;
     background-color: #131416;
     border: 1px solid var(--rule);
     border-radius: 22px;
@@ -120,8 +121,8 @@ img {
 }
 
 .portrait {
-    width: 104px;
-    height: 104px;
+    width: 88px;
+    height: 88px;
     margin: 0 auto;
     border: 1px solid var(--rule);
     border-radius: 50%;
@@ -130,23 +131,23 @@ img {
 }
 
 .rail__name {
-    margin-top: 18px;
+    margin-top: 14px;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 19px;
+    font-size: 17px;
     line-height: 1.2;
     letter-spacing: 0;
 }
 
 .rail__role {
-    margin-top: 4px;
-    font-size: 13.5px;
+    margin-top: 3px;
+    font-size: 12.5px;
     color: var(--ink-soft);
 }
 
 .rail__handle {
-    margin-top: 2px;
-    font-size: 13px;
+    margin-top: 1px;
+    font-size: 12px;
     color: var(--ink-soft);
 }
 
@@ -156,10 +157,10 @@ img {
     justify-content: space-around;
     gap: 4px;
     width: 100%;
-    margin: 20px 0 0;
-    padding: 8px;
+    margin: 14px 0 0;
+    padding: 6px;
     border: 1px solid var(--rule);
-    border-radius: 14px;
+    border-radius: 12px;
     background-color: #1b1c1f;
     list-style: none;
 }
@@ -196,7 +197,7 @@ img {
 .rail__menu {
     position: relative;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 18px;
 }
 
 .rail__menu summary {
@@ -251,10 +252,10 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
+    gap: 1px;
     width: 100%;
     margin: 0;
-    padding: 18px 0 0;
+    padding: 12px 0 0;
     border-top: 1px solid var(--rule);
 }
 
@@ -264,10 +265,10 @@ img {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-radius: 8px;
     color: var(--ink-soft);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     text-decoration: none;
     transition: color 0.18s ease;
@@ -295,11 +296,11 @@ img {
 }
 
 .rail__nav-label {
-    margin: 18px 0 6px;
-    padding-left: 12px;
+    margin: 12px 0 4px;
+    padding-left: 10px;
     color: var(--ink-soft);
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-align: left;
@@ -319,10 +320,10 @@ img {
 
 .rail__foot {
     margin-top: auto;
-    padding-top: 26px;
+    padding-top: 16px;
     color: var(--ink-soft);
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 11px;
+    line-height: 1.4;
 }
 
 /* ---------- intro ---------- */

@@ -1,0 +1,247 @@
+{
+  "site": {
+    "name": "Jhon Denielle Icawalo",
+    "role": "Full stack developer",
+    "handle": "@niellevlogsyt",
+    "email": "jhondenielle.icawalo@email.com",
+    "social": {
+      "github": "https://github.com/niellevlogsyt",
+      "linkedin": "https://www.linkedin.com/in/jhondenielle",
+      "facebook": "https://www.facebook.com/jhondenielle.icawalo.3/",
+      "twitter": "https://twitter.com/jhondenielle"
+    },
+    "hero": {
+      "status": "Open to full-time roles",
+      "headlineLight": "I build web apps.",
+      "headlineHeavy": "From schema to ship.",
+      "lede": "Interface, API and data. I'm a full stack developer working in React, TypeScript, Node and Postgres, and I take a feature from schema to ship on my own."
+    },
+    "tools": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+      "MySQL",
+      "Redis",
+      "Tailwind",
+      "Git",
+      "HTML and CSS"
+    ]
+  },
+  "projects": [
+    {
+      "id": "course-enrollment",
+      "number": "01",
+      "type": "WEB APP",
+      "year": "2025",
+      "title": "Course enrollment system",
+      "description": "Live seat counts, prerequisites, waitlists, and online payment in one registrar workflow.",
+      "tags": ["web"],
+      "stack": ["Next.js", "TypeScript", "PostgreSQL", "Prisma"],
+      "githubUrl": "https://github.com/niellevlogsyt",
+      "visual": {
+        "type": "catalog",
+        "title": "campus / enrollment",
+        "term": "SPRING TERM / 2025",
+        "heading": "Course catalog",
+        "summary": ["12 open sections", "4 credits saved"],
+        "rows": [
+          { "code": "CS 240", "name": "Data structures", "seats": "08 / 24 seats" },
+          { "code": "CS 315", "name": "Database systems", "seats": "16 / 24 seats" },
+          { "code": "CS 402", "name": "Web applications", "seats": "05 / 18 seats" }
+        ]
+      }
+    },
+    {
+      "id": "inventory-dashboard",
+      "number": "02",
+      "type": "DASHBOARD",
+      "year": "2024",
+      "title": "Inventory and sales dashboard",
+      "description": "Branch-level stock, point-of-sale records, and a daily report owners can scan quickly.",
+      "tags": ["dashboard"],
+      "stack": ["React", "Node", "Express", "MySQL"],
+      "githubUrl": "https://github.com/niellevlogsyt",
+      "visual": {
+        "type": "inventory",
+        "title": "STOCKROOM",
+        "subtitle": "All locations⌄",
+        "heading": "Today at a glance",
+        "metrics": [
+          { "label": "NET SALES", "value": "$8,420" },
+          { "label": "ITEMS LOW", "value": "07" }
+        ],
+        "chartBars": 12,
+        "items": [
+          { "name": "Arabica blend", "stock": "18 units" },
+          { "name": "Oat milk", "stock": "06 units" },
+          { "name": "Paper cups", "stock": "42 units" }
+        ]
+      }
+    },
+    {
+      "id": "rest-api",
+      "number": "03",
+      "type": "API",
+      "year": "2024",
+      "title": "REST API for a mobile client",
+      "description": "Versioned endpoints, token authentication, and rate limits built for unreliable connections.",
+      "tags": ["api"],
+      "stack": ["Node", "Express", "JWT", "Redis"],
+      "githubUrl": "https://github.com/niellevlogsyt",
+      "visual": {
+        "type": "api",
+        "title": "API CONSOLE",
+        "env": "v1 / production",
+        "request": { "method": "GET", "path": "/api/v1/enrollments", "status": "200 OK" },
+        "response": {
+          "status": "success",
+          "count": 24,
+          "data": "..."
+        },
+        "latency": "42 ms",
+        "rateLimit": "98%"
+      }
+    }
+  ],
+  "services": {
+    "process": [
+      {
+        "step": "Step 1",
+        "title": "Scope",
+        "description": "Agree what done looks like and what is out of scope before any code gets written."
+      },
+      {
+        "step": "Step 2",
+        "title": "Build",
+        "description": "Work in short iterations, with something you can click at the end of each one."
+      },
+      {
+        "step": "Step 3",
+        "title": "Ship",
+        "description": "Deploy, monitor, and hand over with notes on how it runs and how to maintain it."
+      }
+    ],
+    "cards": [
+      {
+        "title": "Web applications",
+        "description": "A working product, not a prototype that falls over on the second user.",
+        "items": [
+          "React or Next.js front end",
+          "Sign-in, roles and permissions",
+          "Forms that validate properly"
+        ]
+      },
+      {
+        "title": "APIs and integrations",
+        "description": "Reliable endpoints and the connections between the tools you already use.",
+        "items": [
+          "REST design and versioning",
+          "Token and session auth",
+          "Third-party APIs and webhooks"
+        ]
+      },
+      {
+        "title": "Dashboards and internal tools",
+        "description": "Useful screens your team can keep open all day.",
+        "items": [
+          "Tables, filters and exports",
+          "Role-based access",
+          "Reports anyone can read"
+        ]
+      },
+      {
+        "title": "Database and performance",
+        "description": "Find the cause of slow systems and fix it where it starts.",
+        "items": [
+          "Schema design and indexing",
+          "Safe, reversible migrations",
+          "Queries that scale with data"
+        ]
+      },
+      {
+        "title": "Fixes and handovers",
+        "description": "Inheriting someone else's code is normal work, not a punishment.",
+        "items": [
+          "Debugging unfamiliar systems",
+          "Tests around the risky parts",
+          "Notes so the next person can move"
+        ]
+      },
+      {
+        "title": "Working on a team",
+        "description": "Code review, small pull requests, and questions asked early rather than guessed at late.",
+        "items": [
+          "Comfortable owning a feature",
+          "Clear updates on progress",
+          "Documentation as part of the work"
+        ]
+      }
+    ]
+  },
+  "about": {
+    "story": {
+      "lead": "Most of what I build is the load-bearing, unglamorous kind: a form that holds up when people use it badly, a query that stays fast as the table grows, a deploy that doesn't break on a Sunday.",
+      "paragraphs": [
+        "I started with HTML pages for school projects and stayed for the part where the whole thing has to hold together. I'm looking for a full-time role on a team that ships, where I can own features from the schema up.",
+        "I'd rather ask a question early than guess and rebuild it later. I write down what I changed and why, because the next person reading the code is usually me."
+      ]
+    },
+    "skills": {
+      "plates": [
+        {
+          "name": "Data",
+          "detail": "Postgres, MySQL, Prisma"
+        },
+        {
+          "name": "Application",
+          "detail": "Node, Express, REST, auth"
+        },
+        {
+          "name": "Interface",
+          "detail": "React, TypeScript, CSS"
+        }
+      ],
+      "caption": "Three layers, one codebase. I'm useful at each of them, which is why small teams keep handing me the whole feature."
+    },
+    "facts": [
+      { "label": "Focus", "value": "Full stack web development, from schema to interface." },
+      { "label": "Working in", "value": "TypeScript, React, Next.js, Node, Express, PostgreSQL, MySQL, Prisma, Redis." },
+      { "label": "Looking for", "value": "Full-time work, remote or on-site." },
+      { "label": "Education", "value": "Add your degree or training here, with the year." },
+      { "label": "Languages", "value": "Add the languages you work in." }
+    ]
+  },
+  "contact": {
+    "headline": "Let's talk.",
+    "lede": "Send me the role and a line about the team. I'll reply with how I'd approach it, not a form letter.",
+    "email": "jhondenielle.icawalo@email.com",
+    "resumeUrl": "./resume.pdf",
+    "availability": "Full-time work, remote or on-site. If the fit isn't right I'll say so plainly rather than string you along.",
+    "faqs": [
+      {
+        "question": "What do you actually build?",
+        "answer": "Web applications end to end: the interface, the API, and the database behind it. I choose tools to fit the problem."
+      },
+      {
+        "question": "What's your stack?",
+        "answer": "TypeScript, React, Next.js, Node, Express, PostgreSQL, MySQL, Prisma, Redis, and Tailwind."
+      },
+      {
+        "question": "Are you open to remote work?",
+        "answer": "Yes. I'm looking for full-time work and can do it remotely or on-site."
+      },
+      {
+        "question": "How do you work with a team?",
+        "answer": "Small pull requests, early review, and questions asked before the work rather than after. I write down what I changed and why, so nobody has to reverse-engineer it later."
+      },
+      {
+        "question": "What happens when I email you?",
+        "answer": "I read it the same day and reply within one business day. If I'm not the right person for the role, I'll tell you that instead of leaving you waiting."
+      }
+    ]
+  }
+}
