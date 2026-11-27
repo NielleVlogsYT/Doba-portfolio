@@ -5,6 +5,7 @@
   "devCommand": "npx serve .",
   "installCommand": "echo 'No install needed'",
   "framework": null,
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/admin",
