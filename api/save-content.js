@@ -25,13 +25,8 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    // Check auth - Vercel password protection handles this at edge
-    // But we can also check for a shared secret if needed
-    const authHeader = req.headers.authorization;
-    const expectedSecret = process.env.ADMIN_API_SECRET;
-    if (expectedSecret && authHeader !== `Bearer ${expectedSecret}`) {
-        return res.status(401).json({ error: 'Unauthorized' });
-    }
+    // Auth is handled by Vercel Edge Middleware (middleware.ts)
+    // which protects /api/save-content route
 
     try {
         const content = req.body;

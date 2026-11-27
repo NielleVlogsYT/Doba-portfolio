@@ -731,6 +731,22 @@
     saveBtn.addEventListener('click', saveContent);
 
     // ============================================================
+    // LOGOUT BUTTON
+    // ============================================================
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        if (dirty && !confirm('You have unsaved changes. Sign out anyway?')) {
+            return;
+        }
+        try {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = '/';
+        } catch (err) {
+            console.error(err);
+            window.location.href = '/';
+        }
+    });
+
+    // ============================================================
     // KEYBOARD SHORTCUTS
     // ============================================================
     document.addEventListener('keydown', e => {

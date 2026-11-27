@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login — Jhon Denielle Icawalo</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=switzer@400,500,600&display=swap">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            padding: var(--space-6);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .login-header h1 {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            margin: 0 0 var(--space-2);
+        }
+
+        .login-header p {
+            color: var(--fg-muted);
+            margin: 0;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+        }
+
+        .field-row {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .field-row label {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--fg);
+        }
+
+        .field-row input {
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg);
+            color: var(--fg);
+            font-family: inherit;
+            font-size: var(--text-base);
+            transition: border-color var(--fast), box-shadow var(--fast);
+        }
+
+        .field-row input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+
+        .button {
+            margin-top: var(--space-2);
+        }
+
+        .login-error {
+            color: var(--danger);
+            font-size: var(--text-sm);
+            text-align: center;
+            min-height: 20px;
+        }
+
+        .login-footer {
+            margin-top: var(--space-6);
+            text-align: center;
+        }
+
+        .login-footer a {
+            color: var(--fg-muted);
+            font-size: var(--text-sm);
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            color: var(--accent);
+        }
+
+        .button.loading .btn-text { display: none; }
+        .button.loading .btn-loading { display: inline; }
+        .btn-loading { display: none; }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <main class="login-card" role="main">
+            <header class="login-header">
+                <h1>Admin Access</h1>
+                <p>Enter your password to manage the site</p>
+            </header>
+
+            <form class="login-form" id="login-form" novalidate>
+                <div class="field-row">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" required autofocus placeholder="••••••••">
+                </div>
+
+                <div class="login-error" id="error" aria-live="polite"></div>
+
+                <button type="submit" class="button button--primary" id="submit-btn">
+                    <span class="btn-text">Sign In</span>
+                    <span class="btn-loading">Signing in…</span>
+                </button>
+            </form>
+
+            <footer class="login-footer">
+                <a href="/" id="back-link">← Back to site</a>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        (() => {
+            const form = document.getElementById('login-form');
+            const passwordInput = document.getElementById('password');
+            const submitBtn = document.getElementById('submit-btn');
+            const errorEl = document.getElementById('error');
+            const backLink = document.getElementById('back-link');
+
+            // Get redirect URL from query param
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirect = urlParams.get('redirect') || '/admin';
+            backLink.href = redirect === '/admin' ? '/' : redirect;
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorEl.textContent = '';
+
+                const password = passwordInput.value;
+                if (!password) {
+                    errorEl.textContent = 'Please enter a password';
+                    return;
+                }
+
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+
+                try {
+                    const res = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ password })
+                    });
+
+                    const data = await res.json();
+
+                    if (!res.ok) {
+                        throw new Error(data.error || 'Login failed');
+                    }
+
+                    // Success - redirect
+                    window.location.href = data.redirect || '/admin';
+
+                } catch (err) {
+                    errorEl.textContent = err.message;
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    passwordInput.focus();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -5,7 +5,7 @@ A static portfolio site with a Git-backed admin panel. Built with vanilla HTML/C
 ## Features
 
 - **Static site** — Fast, secure, free hosting on Vercel/Netlify/GitHub Pages
-- **Admin panel** — Edit all content at `/admin` (password protected via Vercel)
+- **Admin panel** — Edit all content at `/admin` (protected by Edge Middleware, works on Free tier)
 - **Git-backed** — Changes commit to your repo → Vercel auto-redeploys
 - **No database** — Content lives in `content.json` in your repository
 
@@ -30,11 +30,23 @@ git push -u origin main
 4. Output Directory: `.` (root)
 5. Click **Deploy**
 
-### 3. Enable Vercel Password Protection
+### 3. Set Up Admin Authentication (Free Tier!)
 
-1. In Vercel Dashboard → Your Project → Settings → **Password Protection**
-2. Toggle **Enable Password Protection**
-3. Set a password (this protects `/admin` and the whole site preview)
+Vercel **Edge Middleware** is free — we use it for password protection instead of Pro-tier password protection.
+
+**Generate your password hash:**
+
+```bash
+# Run locally once
+node generate-hash.js "your-secure-password"
+```
+
+This outputs two values — add them as **Environment Variables** in Vercel:
+
+| Variable | Value |
+|----------|-------|
+| `ADMIN_PASSWORD_PEPPER` | (random string from generator) |
+| `ADMIN_PASSWORD_HASH` | (SHA256 hash from generator) |
 
 ### 4. Add GitHub Token for Admin Saves
 
@@ -49,9 +61,9 @@ git push -u origin main
 
 ### 5. Access Admin
 
-Visit: `https://your-site.vercel.app/admin`
+Visit: `https://your-site.vercel.app/login`
 
-Enter your Vercel password → edit content → click **Save Changes** → site rebuilds automatically.
+Enter your password → redirected to `/admin` → edit content → click **Save Changes** → site rebuilds automatically.
 
 ## Project Structure
 
@@ -61,15 +73,20 @@ Enter your Vercel password → edit content → click **Save Changes** → site 
 ├── services.html       # Services page
 ├── about.html          # About page
 ├── contact.html        # Contact page
-├── admin.html          # Admin panel (password protected)
+├── login.html          # Login page (password entry)
+├── admin.html          # Admin panel (protected by middleware)
 ├── content.json        # All site content (single source of truth)
 ├── content-loader.js   # Loads content.json into pages
 ├── script.js           # UI interactions (avatar, filters, nav)
 ├── style.css           # Main styles
 ├── admin.css           # Admin panel styles
 ├── admin.js            # Admin panel logic
+├── middleware.ts       # Vercel Edge Middleware (auth protection)
+├── generate-hash.js    # Password hash generator (run once locally)
 ├── api/
-│   └── save-content.js # Vercel serverless function (commits to GitHub)
+│   ├── save-content.js # Vercel function: commits to GitHub
+│   ├── login.js        # Vercel function: sets auth cookie
+│   └── logout.js       # Vercel function: clears auth cookie
 ├── vercel.json         # Vercel config
 └── .env.example        # Environment variables template
 ```
